@@ -1,9 +1,9 @@
 AddCSLuaFile()
 
 ENT.Base = "base_nextbot"
-ENT.PrintName = "Zombie"
-ENT.Category = "Dissolution"
-ENT.Author = "Chessnut"
+ENT.PrintName = "Walker"
+ENT.Category = "The Walking Dead"
+ENT.Author = "Sixx / Chessnut"
 ENT.Spawnable = true
 ENT.AdminOnly = true
 
@@ -80,11 +80,11 @@ function ENT:RunBehaviour()
 			end
 		end
 
-		if (IsValid(target) and target:Alive() and self:GetRangeTo(target) <= 1500) then
+		if (IsValid(target) and target:Alive() and self:GetRangeTo(target) <= 550) then
 			self.loco:FaceTowards(target:GetPos())
 
 			if (self:GetRangeTo(target) <= 42) then
-				self:EmitSound("npc/zombie_poison/pz_throw2.wav", 100, math.random(75, 125))
+				self:EmitSound("npc/zombie_poison/pz_throw2.wav", 100, math.random(30, 50))
 
 				self:TimedEvent(0.3, function()
 					self:EmitSound("npc/vort/claw_swing"..math.random(1, 2)..".wav")
@@ -116,7 +116,7 @@ function ENT:RunBehaviour()
 
 				self:PlaySequenceAndWait("swing", 1)
 			else
-				self:StartActivity(ACT_WALK)
+				self:StartActivity(ACT_RUN)
 
 				if (self.breathing) then
 					self.breathing:ChangePitch(80, 1)
@@ -128,7 +128,7 @@ function ENT:RunBehaviour()
 					self.nextYell = CurTime() + math.random(4, 8)
 				end
 
-				self.loco:SetDesiredSpeed(40)
+				self.loco:SetDesiredSpeed(80)
 				self:MoveToPos(target:GetPos(), {
 					maxage = 0.67
 				})
@@ -143,7 +143,7 @@ function ENT:RunBehaviour()
 			})
 
 			if (math.random(1, 8) == 2) then
-				self:EmitSound("npc/zombie/zombie_voice_idle"..math.random(2, 7)..".wav", 100, 60)
+				self:EmitSound("npc/zombie/zombie_voice_idle"..math.random(2, 7)..".wav", 0, 0)
 
 				if (math.random(1, 2) == 2) then
 					self:PlaySequenceAndWait("scaredidle")
@@ -154,13 +154,9 @@ function ENT:RunBehaviour()
 
 			if (!self.target) then
 				for k, v in pairs(player.GetAll()) do
-					if (v:Alive() and self:GetRangeTo(v) <= 1400) then
+					if (v:Alive() and self:GetRangeTo(v) <= 100) then
 						self:AlertNearby(v)
 						self.target = v
-						self:PlaySequenceAndWait("wave_smg1", 0.9)
-
-						break
-					end
 				end
 			end
 		end
@@ -185,7 +181,7 @@ function ENT:AlertNearby(target, range, noNoise)
 				end
 
 				v.target = target
-				v:EmitSound("npc/zombie/zombie_alert"..math.random(1, 3)..".wav", 100, math.random(60, 120))
+				v:EmitSound("npc/zombie/zombie_alert"..math.random(1, 3)..".wav", 0, math.random(0, 60))
 				v:AlertNearby(target, range + 640)
 			end)
 
@@ -194,7 +190,7 @@ function ENT:AlertNearby(target, range, noNoise)
 	end
 
 	if (!noNoise) then
-		self:EmitSound("npc/zombie_poison/pz_call1.wav", 100, 120)
+		self:EmitSound("npc/zombie_poison/pz_call1.wav", 0, 12)
 	end
 end
 

@@ -17,7 +17,7 @@ function PLUGIN:OnNPCKilled(entity)
 	end;
 	
 	local RandomItem = table.Random(items)
-	if (class == "nut_zombie" or class == "nut_zombie" or class == "nut_zombie" or class == "nut_zombie" or class == "nut_zombie") then
+	if (class == "nut_zombie") then
 		nut.item.Spawn(entity:GetPos() + Vector(0, 0, 8), nil, RandomItem)
 	end
 end

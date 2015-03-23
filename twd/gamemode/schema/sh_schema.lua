@@ -5,7 +5,7 @@ SCHEMA.uniqueID = "walkingdead"
 
 nut.currency.SetUp("scrap", "scraps")
 
-nut.config.menuMusic = "music/hl1_song24.mp3"
+nut.config.menuMusic = "sound/walking.mp3"
 nut.config.bigIntroText = SCHEMA.name
 nut.config.smallIntroText = SCHEMA.desc
 nut.config.mainColor = Color(100, 130, 70)

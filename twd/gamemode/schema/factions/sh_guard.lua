@@ -11,7 +11,7 @@ FACTION.femaleModels = {}
 -- Define it as a whitelisted faction.
 FACTION.isDefault = false
 -- How often the faction gets paid in seconds.
-FACTION.payTime = 10
+FACTION.payTime = 10000
 -- How much the faction members gets paid.
 FACTION.pay = 25
 
