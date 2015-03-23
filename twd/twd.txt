@@ -1,0 +1,8 @@
+"Gamemode"
+{
+	"base"			"nutscript"
+	"title"			"The Walking Dead"
+	"author"		"Sixx"
+	"menusystem"	"1"
+	"maps"			"^rp_"
+}
